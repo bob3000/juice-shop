@@ -253,6 +253,10 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
   /* Swagger documentation for B2B v2 endpoints */
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+  app.use('/api-docs-json', ({ params }: Request, res: Response, next: NextFunction) => {
+      console.log('hello')
+      res.sendFile(path.resolve('./', 'swagger.yml' ))
+  })
 
   app.use(express.static(path.resolve('frontend/dist/frontend')))
   app.use(cookieParser('kekse'))
